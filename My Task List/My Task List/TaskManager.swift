@@ -31,24 +31,23 @@ class TaskManager:NSObject
     }
     func addTask(name:String,desc:String)
     {
-        var newTask=NSEntityDescription.insertNewObjectForEntityForName("Task", inManagedObjectContext: context) as NSManagedObject
-        newTask.setValue(name, forKey: "name")
-        newTask.setValue(desc, forKey: "desc")
+        let ent=NSEntityDescription.entityForName("Task", inManagedObjectContext: context)!
+        var newTask=Task(entity:ent, insertIntoManagedObjectContext:context)
+        newTask.name=name
+        newTask.desc=desc
         context.save(nil)
         load()
     }
     func removeTask(index:Int)
     {
-        context.deleteObject(tasks[index] as NSManagedObject)
+        context.deleteObject(tasks[index] as Task)
         context.save(nil)
         load()
     }
     func getTask(index:Int)->(name:String,desc:String)
     {
-        var t:NSManagedObject=tasks[index] as NSManagedObject
-        var name:String=t.valueForKey("name") as String
-        var desc:String=t.valueForKey("desc") as String
-        return (name,desc)
+        var t:Task=tasks[index] as Task
+        return (t.name,t.desc)
     }
     func getTaskCount()->Int
     {
