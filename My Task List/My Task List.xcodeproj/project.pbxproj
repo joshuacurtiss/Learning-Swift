@@ -15,6 +15,7 @@
 		032F1FAE19FB7127002351F5 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 032F1FAC19FB7127002351F5 /* LaunchScreen.xib */; };
 		032F1FBA19FB7127002351F5 /* My_Task_ListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F1FB919FB7127002351F5 /* My_Task_ListTests.swift */; };
 		032F1FC619FB7187002351F5 /* TaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032F1FC519FB7187002351F5 /* TaskManager.swift */; };
+		03BAFB8319FEC767002FDA76 /* tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 03BAFB8119FEC767002FDA76 /* tasks.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		032F1FB819FB7127002351F5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		032F1FB919FB7127002351F5 /* My_Task_ListTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = My_Task_ListTests.swift; sourceTree = "<group>"; };
 		032F1FC519FB7187002351F5 /* TaskManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskManager.swift; sourceTree = "<group>"; };
+		03BAFB8219FEC767002FDA76 /* tasks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = tasks.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				032F1FAC19FB7127002351F5 /* LaunchScreen.xib */,
 				032F1F9F19FB7127002351F5 /* Supporting Files */,
 				032F1FC519FB7187002351F5 /* TaskManager.swift */,
+				03BAFB8119FEC767002FDA76 /* tasks.xcdatamodeld */,
 			);
 			path = "My Task List";
 			sourceTree = "<group>";
@@ -220,6 +223,7 @@
 			files = (
 				032F1FA619FB7127002351F5 /* SecondViewController.swift in Sources */,
 				032F1FA219FB7127002351F5 /* AppDelegate.swift in Sources */,
+				03BAFB8319FEC767002FDA76 /* tasks.xcdatamodeld in Sources */,
 				032F1FC619FB7187002351F5 /* TaskManager.swift in Sources */,
 				032F1FA419FB7127002351F5 /* FirstViewController.swift in Sources */,
 			);
@@ -413,6 +417,7 @@
 				032F1FBF19FB7127002351F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		032F1FC019FB7127002351F5 /* Build configuration list for PBXNativeTarget "My Task ListTests" */ = {
 			isa = XCConfigurationList;
@@ -421,8 +426,22 @@
 				032F1FC219FB7127002351F5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		03BAFB8119FEC767002FDA76 /* tasks.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				03BAFB8219FEC767002FDA76 /* tasks.xcdatamodel */,
+			);
+			currentVersion = 03BAFB8219FEC767002FDA76 /* tasks.xcdatamodel */;
+			path = tasks.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 032F1F9419FB7127002351F5 /* Project object */;
 }

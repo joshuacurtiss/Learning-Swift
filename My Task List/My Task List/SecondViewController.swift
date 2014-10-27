@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class SecondViewController: UIViewController, UITextFieldDelegate {
 
@@ -39,6 +40,13 @@ class SecondViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func addTask_Click(sender:UIButton)
     {
+        var appDel:AppDelegate=(UIApplication.sharedApplication().delegate as AppDelegate)
+        var context:NSManagedObjectContext=appDel.managedObjectContext!
+        var newTask=NSEntityDescription.insertNewObjectForEntityForName("Task", inManagedObjectContext: context) as NSManagedObject
+        newTask.setValue(txtTask.text, forKey: "name")
+        newTask.setValue(txtDesc.text, forKey: "desc")
+        context.save(nil)
+        println(newTask)
         taskMgr.addTask(txtTask.text, desc: txtDesc.text)
         self.view.endEditing(true)
         txtTask.text=""
