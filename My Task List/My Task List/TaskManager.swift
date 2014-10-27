@@ -22,5 +22,17 @@ class TaskManager:NSObject
     {
         tasks.append(task(name: name, desc: desc))
     }
+    func removeTask(index:Int)
+    {
+        tasks.removeAtIndex(index)
+    }
+    func getTask(index:Int)->(name:String,desc:String)
+    {
+        return (tasks[index].name,tasks[index].desc)
+    }
+    func getTaskCount()->Int
+    {
+        return tasks.count
+    }
 }
 

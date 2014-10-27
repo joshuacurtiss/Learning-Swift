@@ -30,14 +30,15 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return taskMgr.tasks.count
+        return taskMgr.getTaskCount()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         var cell:UITableViewCell=UITableViewCell(style: UITableViewCellStyle.Subtitle, reuseIdentifier: "test")
-        cell.textLabel.text=taskMgr.tasks[indexPath.row].name
-        cell.detailTextLabel?.text=taskMgr.tasks[indexPath.row].desc
+        var t=taskMgr.getTask(indexPath.row)
+        cell.textLabel.text=t.name
+        cell.detailTextLabel?.text=t.desc
         return cell
     }
 
@@ -45,7 +46,7 @@ class FirstViewController: UIViewController, UITableViewDelegate, UITableViewDat
     {
         if( editingStyle == UITableViewCellEditingStyle.Delete )
         {
-            taskMgr.tasks.removeAtIndex(indexPath.row)
+            taskMgr.removeTask(indexPath.row)
             tblTasks.reloadData()
         }
     }
