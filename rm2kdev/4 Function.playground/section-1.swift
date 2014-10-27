@@ -23,4 +23,17 @@ func getNames() -> (String, String)
     return ("Name 1","Name 2")
 }
 
-getNames()
+// How to refer to the multiple returned values:
+var stuff=getNames()
+println(stuff.0)
+println(stuff.1)
+
+// Function returns multiple named values:
+func getThing() -> (name:String, desc:String)
+{
+    return ("My name","My desc")
+}
+
+var thing=getThing()
+println(thing.name)
+println(thing.desc)
