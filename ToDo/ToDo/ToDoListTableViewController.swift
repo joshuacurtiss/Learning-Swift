@@ -15,10 +15,11 @@ import UIKit
     func unwindToList(segue:UIStoryboardSegue)
     {
         var source:ViewController=segue.sourceViewController as ViewController
-        var item:Task=source.task!
-        println("Unwound to list. Item: \(item.name)")
-        tasks.addObject(item)
-        tableView.reloadData()
+        if let item = source.task {
+            println("Unwound to list. Item: \(item.name)")
+            tasks.addObject(item)
+            tableView.reloadData()
+        }
     }
     
     override func viewDidLoad()
