@@ -7,17 +7,35 @@
 //
 
 import UIKit
+import CoreData
 
-class Task: NSObject
+@objc(Task)
+class Task:NSManagedObject
 {
-    
-    var name:NSString=""
-    var completed:Bool=false
-    var createDT:NSDate=NSDate()
+    @NSManaged var name:String
+    @NSManaged var desc:String
+    @NSManaged var completeDT:NSDate?
+    @NSManaged var modifyDT:NSDate
+    @NSManaged var createDT:NSDate
 
-    init(name:String)
+    var completed:Bool
     {
-        self.name=name
+        get
+        {
+            if let d = completeDT {
+                return true
+            } else {
+                return false
+            }
+        }
+        set
+        {
+            if( newValue ) {
+                completeDT=NSDate()
+            } else {
+                completeDT=nil
+            }
+        }
     }
     
 }

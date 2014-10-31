@@ -10,14 +10,13 @@ import UIKit
 
 @objc(ToDoListTableViewController) class ToDoListTableViewController: UITableViewController {
 
-    var tasks:NSMutableArray=[]
-    
     func unwindToList(segue:UIStoryboardSegue)
     {
         var source:ViewController=segue.sourceViewController as ViewController
-        if let item = source.task {
-            println("Unwound to list. Item: \(item.name)")
-            tasks.addObject(item)
+        var taskName:String=source.txtTask.text
+        println("Unwound to list. Task: \(taskName)")
+        if taskName != "" {
+            taskManager.addTask(taskName, desc: "")
             tableView.reloadData()
         }
     }
@@ -25,10 +24,6 @@ import UIKit
     override func viewDidLoad()
     {
         super.viewDidLoad()
-        // Temporary loaded data:
-        tasks.addObject(Task(name: "Buy milk"))
-        tasks.addObject(Task(name: "Buy eggs"))
-        tasks.addObject(Task(name: "Read a book"))
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,12 +37,12 @@ import UIKit
     }
 
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tasks.count
+        return taskManager.getTaskCount()
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ListPrototypeCell", forIndexPath: indexPath) as UITableViewCell
-        var task=tasks[indexPath.row] as Task
+        var task=taskManager.getTask(indexPath.row) as Task
         cell.textLabel.text=task.name
         if task.completed {cell.accessoryType = .Checkmark}
         else {cell.accessoryType = .None}
@@ -57,8 +52,9 @@ import UIKit
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
-        var tappedItem:Task = self.tasks[indexPath.row] as Task
+        var tappedItem:Task = taskManager.getTask(indexPath.row) as Task
         tappedItem.completed = !tappedItem.completed
+        taskManager.save()
         tableView.reloadData()
     }
 
@@ -72,7 +68,7 @@ import UIKit
 
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
-            tasks.removeObjectAtIndex(indexPath.row)
+            taskManager.removeTask(indexPath.row)
             tableView.reloadData()
         }
     }

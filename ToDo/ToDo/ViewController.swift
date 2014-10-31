@@ -10,7 +10,6 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var task:Task?
     @IBOutlet var txtTask: UITextField!
     @IBOutlet var btnDone: UIBarButtonItem!
     
@@ -30,9 +29,6 @@ class ViewController: UIViewController {
     {
         if sender as? NSObject != btnDone {return}
         println("Preparing for segue. The variable is \(txtTask.text.utf16Count) chars long.")
-        if txtTask.text.utf16Count>0 {
-            task=Task(name: txtTask.text)
-        }
     }
 
 }
