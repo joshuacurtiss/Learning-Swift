@@ -44,7 +44,17 @@ import UIKit
         let cell = tableView.dequeueReusableCellWithIdentifier("ListPrototypeCell", forIndexPath: indexPath) as UITableViewCell
         var task=tasks[indexPath.row] as Task
         cell.textLabel.text=task.name
+        if task.completed {cell.accessoryType = .Checkmark}
+        else {cell.accessoryType = .None}
         return cell
+    }
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    {
+        tableView.deselectRowAtIndexPath(indexPath, animated: false)
+        var tappedItem:Task = self.tasks[indexPath.row] as Task
+        tappedItem.completed = !tappedItem.completed
+        tableView.reloadData()
     }
 
     /*
