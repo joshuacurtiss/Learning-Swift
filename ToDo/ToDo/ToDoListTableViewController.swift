@@ -54,6 +54,7 @@ import UIKit
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         var tappedItem:Task = taskManager.getTask(indexPath.row) as Task
         tappedItem.completed = !tappedItem.completed
+        NSLog("%@",tappedItem)
         taskManager.save()
         tableView.reloadData()
     }

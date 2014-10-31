@@ -29,18 +29,27 @@ class TaskManager:NSObject
         var results:NSArray=context.executeFetchRequest(req, error: nil)!
         tasks=context.executeFetchRequest(req, error: nil)!
     }
-    func addTask(name:String,desc:String)
+    func createTask()->Task
     {
         let ent=NSEntityDescription.entityForName("Task", inManagedObjectContext: context)!
-        var newTask=Task(entity:ent, insertIntoManagedObjectContext:context)
+        var t:Task=Task(entity:ent, insertIntoManagedObjectContext:context)
+        t.createDT=NSDate()
+        t.modifyDT=NSDate()
+        return t
+    }
+    func addTask(name:String,desc:String)
+    {
+        var newTask=createTask()
         newTask.name=name
         newTask.desc=desc
+        NSLog("%@",newTask)
         save()
         load()
     }
     func removeTask(index:Int)
     {
         context.deleteObject(tasks[index] as Task)
+        save()
         load()
     }
     func getTask(index:Int)->Task
