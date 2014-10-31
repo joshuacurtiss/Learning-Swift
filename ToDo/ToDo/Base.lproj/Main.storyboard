@@ -18,7 +18,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New to-do item" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-pH-a3e">
-                                <rect key="frame" x="16" y="28" width="568" height="30"/>
+                                <rect key="frame" x="16" y="102" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
@@ -38,10 +38,14 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="RXe-eC-8Gy">
                             <connections>
-                                <segue destination="0SK-hf-Vuz" kind="unwind" unwindAction="unwindToList:" id="787-Ea-8En"/>
+                                <segue destination="0SK-hf-Vuz" kind="unwind" unwindAction="unwindToList:" id="XnL-3y-STH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="btnDone" destination="RXe-eC-8Gy" id="oHX-Qp-rn6"/>
+                        <outlet property="txtTask" destination="IUK-pH-a3e" id="lih-rI-aGm"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <exit id="0SK-hf-Vuz" userLabel="Exit" sceneMemberID="exit"/>

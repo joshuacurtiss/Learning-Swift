@@ -14,7 +14,11 @@ import UIKit
     
     func unwindToList(segue:UIStoryboardSegue)
     {
-        println("Unwinding to table view.")
+        var source:ViewController=segue.sourceViewController as ViewController
+        var item:Task=source.task!
+        println("Unwound to list. Item: \(item.name)")
+        tasks.addObject(item)
+        tableView.reloadData()
     }
     
     override func viewDidLoad()
@@ -89,16 +93,6 @@ import UIKit
     override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
         // Return NO if you do not want the item to be re-orderable.
         return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
     }
     */
 

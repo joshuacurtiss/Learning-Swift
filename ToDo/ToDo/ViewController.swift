@@ -10,16 +10,30 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var task:Task?
+    @IBOutlet var txtTask: UITextField!
+    @IBOutlet var btnDone: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
+        self.view.endEditing(true)
     }
 
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
+    {
+        if sender as? NSObject != btnDone {return}
+        println("Preparing for segue. The variable is \(txtTask.text.utf16Count) chars long.")
+        if txtTask.text.utf16Count>0 {
+            task=Task(name: txtTask.text)
+        }
+    }
 
 }
 
