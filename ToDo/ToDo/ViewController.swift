@@ -38,15 +38,16 @@ class ViewController: UIViewController, UITextFieldDelegate {
             next?.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
+            NSLog("Get ready to perform segue!!!")
+            performSegueWithIdentifier("done", sender: self)
         }
         return false
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
-        NSLog("Prepare for segue")
-        if sender as? NSObject != btnDone {return}
-        if txtTask.text.utf16Count>0 {
+        NSLog("Prepare for segue... \(segue.identifier)")
+        if segue.identifier=="done" && txtTask.text.utf16Count>0 {
             action="save"
         }
     }

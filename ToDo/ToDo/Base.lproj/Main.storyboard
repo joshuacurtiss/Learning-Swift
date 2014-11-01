@@ -47,12 +47,12 @@
                     <navigationItem key="navigationItem" title="Add To-Do Item" id="ykk-01-wGm">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="cHE-rB-fHt">
                             <connections>
-                                <segue destination="0SK-hf-Vuz" kind="unwind" unwindAction="unwindToList:" id="wAY-9K-kEi"/>
+                                <segue destination="0SK-hf-Vuz" kind="unwind" identifier="cancel" unwindAction="unwindToList:" id="wAY-9K-kEi"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="RXe-eC-8Gy">
                             <connections>
-                                <segue destination="0SK-hf-Vuz" kind="unwind" unwindAction="unwindToList:" id="XnL-3y-STH"/>
+                                <segue destination="0SK-hf-Vuz" kind="unwind" identifier="done" unwindAction="unwindToList:" id="XnL-3y-STH"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -60,7 +60,6 @@
                         <outlet property="btnDone" destination="RXe-eC-8Gy" id="oHX-Qp-rn6"/>
                         <outlet property="txtDesc" destination="9TU-Zh-fr8" id="hQG-dI-VpN"/>
                         <outlet property="txtTask" destination="IUK-pH-a3e" id="lih-rI-aGm"/>
-                        <segue destination="0SK-hf-Vuz" kind="unwind" unwindAction="unwindToList:" id="2sv-WT-zBL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
