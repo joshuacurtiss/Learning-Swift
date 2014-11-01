@@ -12,11 +12,12 @@ import UIKit
 
     func unwindToList(segue:UIStoryboardSegue)
     {
+        NSLog("Unwind to list")
         var source:ViewController=segue.sourceViewController as ViewController
-        var taskName:String=source.txtTask.text
-        println("Unwound to list. Task: \(taskName)")
-        if taskName != "" {
-            taskManager.addTask(taskName, desc: "")
+        if source.action=="save" {
+            var taskName:String=source.txtTask.text
+            var taskDesc:String=source.txtDesc.text
+            taskManager.addTask(taskName, desc: taskDesc)
             tableView.reloadData()
         }
     }
@@ -44,6 +45,7 @@ import UIKit
         let cell = tableView.dequeueReusableCellWithIdentifier("ListPrototypeCell", forIndexPath: indexPath) as UITableViewCell
         var task=taskManager.getTask(indexPath.row) as Task
         cell.textLabel.text=task.name
+        cell.detailTextLabel?.text=task.desc
         if task.completed {cell.accessoryType = .Checkmark}
         else {cell.accessoryType = .None}
         return cell
@@ -54,8 +56,7 @@ import UIKit
         tableView.deselectRowAtIndexPath(indexPath, animated: false)
         var tappedItem:Task = taskManager.getTask(indexPath.row) as Task
         tappedItem.completed = !tappedItem.completed
-        NSLog("%@",tappedItem)
-        taskManager.save()
+        taskManager.save(tappedItem)
         tableView.reloadData()
     }
 

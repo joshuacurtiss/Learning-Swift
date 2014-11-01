@@ -17,17 +17,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New to-do item" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-pH-a3e">
-                                <rect key="frame" x="16" y="102" width="568" height="30"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="New to-do item" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IUK-pH-a3e">
+                                <rect key="frame" x="16" y="79" width="568" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="next" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="l5r-iO-XN8"/>
+                                </connections>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Description" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9TU-Zh-fr8">
+                                <rect key="frame" x="16" y="117" width="568" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
+                                <connections>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="0dg-oO-Dez"/>
+                                </connections>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="IUK-pH-a3e" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" id="FUC-sH-HjK"/>
                             <constraint firstItem="IUK-pH-a3e" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="HmC-S4-pLm"/>
                             <constraint firstItem="IUK-pH-a3e" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="OOU-5P-6YC"/>
+                            <constraint firstItem="IUK-pH-a3e" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="15" id="QMX-gi-HqJ"/>
+                            <constraint firstItem="9TU-Zh-fr8" firstAttribute="top" secondItem="IUK-pH-a3e" secondAttribute="bottom" constant="8" id="htg-9H-9QX"/>
+                            <constraint firstItem="9TU-Zh-fr8" firstAttribute="trailing" secondItem="kh9-bI-dsS" secondAttribute="trailingMargin" id="rZx-v5-UEl"/>
+                            <constraint firstItem="9TU-Zh-fr8" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" id="whn-Gf-TdZ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Add To-Do Item" id="ykk-01-wGm">
@@ -44,13 +58,15 @@
                     </navigationItem>
                     <connections>
                         <outlet property="btnDone" destination="RXe-eC-8Gy" id="oHX-Qp-rn6"/>
+                        <outlet property="txtDesc" destination="9TU-Zh-fr8" id="hQG-dI-VpN"/>
                         <outlet property="txtTask" destination="IUK-pH-a3e" id="lih-rI-aGm"/>
+                        <segue destination="0SK-hf-Vuz" kind="unwind" unwindAction="unwindToList:" id="2sv-WT-zBL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
                 <exit id="0SK-hf-Vuz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2676" y="1009"/>
+            <point key="canvasLocation" x="2546" y="277"/>
         </scene>
         <!--My To-Do List-->
         <scene sceneID="Ga4-IY-J9h">
@@ -61,7 +77,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ListPrototypeCell" textLabel="cKZ-cG-RdF" style="IBUITableViewCellStyleDefault" id="X4l-SK-byf">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ListPrototypeCell" textLabel="cKZ-cG-RdF" detailTextLabel="K7q-m3-eBw" style="IBUITableViewCellStyleSubtitle" id="X4l-SK-byf">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="X4l-SK-byf" id="97q-3e-7iq">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -72,19 +88,13 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Detail" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="K7q-m3-eBw">
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Vbb-rX-Zh6">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Vbb-rX-Zh6" id="yF5-SF-VSd">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="LhT-ra-S2l">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LhT-ra-S2l" id="dvv-e3-pec">
-                                    <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -97,7 +107,7 @@
                     <navigationItem key="navigationItem" title="My To-Do List" id="sFP-sH-tNL">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="SaA-8I-jb4">
                             <connections>
-                                <segue destination="uiJ-h0-EOQ" kind="showDetail" id="3v0-8D-Iyi"/>
+                                <segue destination="uiJ-h0-EOQ" kind="showDetail" identifier="test" id="3v0-8D-Iyi"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>

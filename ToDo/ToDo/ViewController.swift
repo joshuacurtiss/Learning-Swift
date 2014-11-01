@@ -8,13 +8,19 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITextFieldDelegate {
 
+    var action:String=""
     @IBOutlet var txtTask: UITextField!
+    @IBOutlet var txtDesc: UITextField!
     @IBOutlet var btnDone: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        txtTask.becomeFirstResponder()
     }
 
     override func didReceiveMemoryWarning() {
@@ -24,11 +30,25 @@ class ViewController: UIViewController {
     override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
         self.view.endEditing(true)
     }
-
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        NSLog("Text field should return")
+        if textField.returnKeyType == UIReturnKeyType.Next {
+            var next=textField.superview?.viewWithTag(textField.tag+1)
+            next?.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?)
     {
+        NSLog("Prepare for segue")
         if sender as? NSObject != btnDone {return}
-        println("Preparing for segue. The variable is \(txtTask.text.utf16Count) chars long.")
+        if txtTask.text.utf16Count>0 {
+            action="save"
+        }
     }
 
 }

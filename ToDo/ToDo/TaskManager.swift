@@ -34,7 +34,6 @@ class TaskManager:NSObject
         let ent=NSEntityDescription.entityForName("Task", inManagedObjectContext: context)!
         var t:Task=Task(entity:ent, insertIntoManagedObjectContext:context)
         t.createDT=NSDate()
-        t.modifyDT=NSDate()
         return t
     }
     func addTask(name:String,desc:String)
@@ -42,12 +41,12 @@ class TaskManager:NSObject
         var newTask=createTask()
         newTask.name=name
         newTask.desc=desc
-        NSLog("%@",newTask)
-        save()
+        save(newTask)
         load()
     }
     func removeTask(index:Int)
     {
+        NSLog("Remove task: %@",tasks[index] as Task)
         context.deleteObject(tasks[index] as Task)
         save()
         load()
@@ -59,6 +58,12 @@ class TaskManager:NSObject
     func getTaskCount()->Int
     {
         return tasks.count
+    }
+    func save(task:Task)
+    {
+        task.modifyDT=NSDate()
+        NSLog("Save task: %@",task)
+        save()
     }
     func save()
     {
